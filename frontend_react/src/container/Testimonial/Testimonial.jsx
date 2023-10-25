@@ -13,8 +13,8 @@ const Testimonial = () => {
   const [currentIndex, setCurrentIndex] = useState([])
 
   useEffect(() => {
-    const query = '*[_type == "testimonials"]'
-    const brandsQuery = '*[_type == "brand"]'
+    const query = '*[_type == "testimonials"]';
+    const brandsQuery = '*[_type == "brands"]';
 
     client.fetch(query)
     .then((data) => {
