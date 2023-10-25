@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {motion} from 'framer-motion'
-import { Tooltip } from 'react-tooltip'
+import { Tooltip  } from 'react-tooltip'
 
-import { AppWrap } from '../../wrapper'
+import { AppWrap, MotionWrap} from '../../wrapper'
 import { urlFor, client } from '../../client'
 import './Skills.scss'
 
@@ -49,7 +49,18 @@ const Skills = () => {
       </motion.div>
 
       <motion.div className='app__skills-exp'>
-        {experience?.works?.map((work) => (
+        {experience?.map((experience) => (
+
+          <motion.div
+            className='app__skills-exp-item'
+            key={experience.year}
+          >
+          <div className='app__skills-exp-year'>
+            <p className='bold-text'>{experience.year}</p>
+          </div>
+
+          <motion.div className='app__skills-exp-works'>
+            {experience.works.map((work) => (
           <>
             <motion.div
               whileInView={{opacity: [0, 1]}}
@@ -72,11 +83,18 @@ const Skills = () => {
             {work.desc}
             </Tooltip>
           </>
-        ))}
+            ))}
+          </motion.div>
+          </motion.div>
+ ))}
       </motion.div>
       </div>
     </>
   )
 }
 
-export default AppWrap(Skills, 'skills');
+export default AppWrap (
+  MotionWrap(Skills, 'app__skills'), 
+  'skills',
+  "app__whitebg"
+  );
